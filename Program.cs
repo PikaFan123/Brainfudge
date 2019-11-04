@@ -6,29 +6,37 @@ namespace Brainpreter
     { 
         static void Main(string[] args)
         {
-            if (args.Length >= 0)
+            try 
             {
-                var par = args.Skip(1).ToArray();
-                string arg = "";
-                foreach(string s in par) {arg = arg + $"{s} "; }
-                arg = arg.Remove(arg.Length - 1);
-                if (args[0] == "-i")
+                if (args.Length >= 0)
                 {
-                    BF.Interpret(arg);
+                    var par = args.Skip(1).ToArray();
+                    string arg = "";
+                    foreach(string s in par) {arg = arg + $"{s} "; }
+                    arg = arg.Remove(arg.Length - 1);
+                    if (args[0] == "-i")
+                    {
+                        BF.Interpret(arg);
+                    }
+                    else if (args[0] == "-c")
+                    {
+                        BF.Convert(arg);
+                    }
+                    else if (args[0] == "-h")
+                    {
+                        System.Console.WriteLine(Util.GetHelp());
+                    }
                 }
-                else if (args[0] == "-c")
-                {
-                    BF.Convert(arg);
-                }
-                else if (args[0] == "-h")
+                else 
                 {
                     System.Console.WriteLine(Util.GetHelp());
                 }
             }
-            else 
+            catch(ArgumentOutOfRangeException) 
             {
                 System.Console.WriteLine(Util.GetHelp());
             }
+            
         }
     }
 }
