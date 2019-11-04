@@ -2,7 +2,8 @@
 
 ### Quick Start
 #### Releases
-Self contained Releases that dont need .NET Core installed are available at https://github.com/PikaFan123/Brainfudge/releases
+Self contained Releases that dont need .NET Core installed are available at 
+https://github.com/PikaFan123/Brainfudge/releases
 
 #### Building
 Clone with `https://github.com/PikaFan123/Brainfudge.git`
