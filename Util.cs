@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Brainpreter
 {
+    
     public enum Token
     {
         ShiftRight,
@@ -17,18 +18,21 @@ namespace Brainpreter
     }
     public static class Util
     {
-        private static readonly Tuple<char,char> pair = new Tuple<char,char>('[',']');
-        public static bool ProperAlignement(string bfC)
+        static Config config;
+        private static Tuple<string,string> pair;
+        public static bool ProperAlignement(string bfC, Config conf)
         {
-            Stack<char> bracks = new Stack<char>();
+            config = conf;
+            pair = new Tuple<string,string>(config.StartLoop,config.EndLoop);
+            Stack<string> bracks = new Stack<string>();
             try 
             {    
-                foreach (char c in bfC)
+                foreach (string c in bfC.Split(" "))
                 {
                     if (pair.Item1 == c)
                         bracks.Push(c);
                     else if (pair.Item2 == c)
-                        if ('[' == bracks.Peek())
+                        if (config.StartLoop == bracks.Peek())
                             bracks.Pop();
                         else
                             return false;
@@ -39,39 +43,51 @@ namespace Brainpreter
             catch{return false;}
             return bracks.Count == 0 ? true : false;
         }
-        public static List<Token> TokenizeString(string input)
+        public static List<Token> TokenizeString(string input, Config conf)
         {
+            config = conf;
             List<Token> Tokens = new List<Token>();
-            foreach (char c in input)
+            foreach (string c in input.Split(" "))
             {
-                switch(c)
+                if (c == config.ShiftLeft)
                 {
-                    case '>':
-                        Tokens.Add(Token.ShiftRight);
-                        break;
-                    case '<':
-                        Tokens.Add(Token.ShiftLeft);
-                        break;
-                    case '+':
-                        Tokens.Add(Token.Plus);
-                        break;
-                    case '-':
-                        Tokens.Add(Token.Minus);
-                        break;
-                    case '.':
-                        Tokens.Add(Token.Output);
-                        break;
-                    case ',':
-                        Tokens.Add(Token.Input);
-                        break;
-                    case '[':
-                        Tokens.Add(Token.StartLoop);
-                        break;
-                    case ']':
-                        Tokens.Add(Token.EndLoop);
-                        break;
-                    default:
-                        break;
+                    Tokens.Add(Token.ShiftLeft);
+                    continue;
+                }
+                else if (c == config.ShiftRight)
+                {
+                    Tokens.Add(Token.ShiftRight);
+                    continue;
+                }
+                else if (c == config.Plus)
+                {
+                    Tokens.Add(Token.Plus);
+                    continue;
+                }
+                else if (c == config.Minus)
+                {
+                    Tokens.Add(Token.Minus);
+                    continue;
+                }
+                else if (c == config.Write)
+                {
+                    Tokens.Add(Token.Output);
+                    continue;
+                }
+                else if (c == config.Input)
+                {
+                    Tokens.Add(Token.Input);
+                    continue;
+                }
+                else if (c == config.StartLoop)
+                {
+                    Tokens.Add(Token.StartLoop);
+                    continue;
+                }
+                else if (c == config.EndLoop)
+                {
+                    Tokens.Add(Token.EndLoop);
+                    continue;
                 }
             }
             return Tokens;
@@ -81,6 +97,8 @@ namespace Brainpreter
             return 
             @"
             Brainpreter Help
+
+            This Version loads its Lang from config.json
 
             -c: Convert a string to brainfuck code
             -i: Interpret and execute brainfuck code

@@ -1,0 +1,10 @@
+{
+    "ShiftLeft": "<",
+    "ShiftRight": ">",
+    "Plus": "+",
+    "Minus": "-",
+    "Write": ".",
+    "Input": ",",
+    "StartLoop": "[",
+    "EndLoop": "]"
+}

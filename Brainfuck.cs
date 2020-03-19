@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Brainpreter;
 using static System.Math;
 namespace Brainpreter
 {
     class BF
     {
+        static Config config;
         public static void Interpret(string toInp)
-        {  
-            if (Util.ProperAlignement(toInp))
+        {
+            config = Config.FromJson(File.ReadAllText("config.json"));
+            if (Util.ProperAlignement(toInp, config))
             {
-                var tokens = Util.TokenizeString(toInp).ToArray();
+                var tokens = Util.TokenizeString(toInp, config).ToArray();
                 int pointer = 0;
                 long regSize = int.MaxValue / 2;
                 byte[] register = new byte[regSize];
@@ -93,6 +96,7 @@ namespace Brainpreter
         }
         public static void Convert(string toConv)
         {
+            config = Config.FromJson(File.ReadAllText("config.json"));
             List<int> Linted = new List<int>();
             toConv.ToList().ForEach(x => Linted.Add(System.Convert.ToInt32(x)));
             string fudge = "";
@@ -105,12 +109,12 @@ namespace Brainpreter
                 string remPlus = "";
                 string divPlus = "";
                 for (int i = 0; i < multOfDiv; i++)
-                    mdivPlus += "+";
+                    mdivPlus += $"{config.Plus} ";
                 for (int i = 0; i < rem; i++)
-                    remPlus += "+";
+                    remPlus += $"{config.Plus} ";
                 for (int i = 0; i < Divider; i++)
-                    divPlus += "+";
-                fudge += $">{mdivPlus}[<{divPlus}>-]<{remPlus}.>";
+                    divPlus += $"{config.Plus} ";
+                fudge += $"{config.ShiftRight} {mdivPlus}{config.StartLoop} {config.ShiftLeft} {divPlus}{config.ShiftRight} {config.Minus} {config.EndLoop} {config.ShiftLeft} {remPlus}{config.Write} {config.ShiftRight} ";
             }
             System.Console.WriteLine(fudge);
         }
