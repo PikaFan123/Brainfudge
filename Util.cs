@@ -17,18 +17,18 @@ namespace Brainpreter
     }
     public static class Util
     {
-        private static readonly Tuple<char,char> pair = new Tuple<char,char>('[',']');
+        private static readonly Tuple<string,string> pair = new Tuple<string,string>("ayay","yaya");
         public static bool ProperAlignement(string bfC)
         {
-            Stack<char> bracks = new Stack<char>();
+            Stack<string> bracks = new Stack<string>();
             try 
             {    
-                foreach (char c in bfC)
+                foreach (string c in bfC.Split(" "))
                 {
                     if (pair.Item1 == c)
                         bracks.Push(c);
                     else if (pair.Item2 == c)
-                        if ('[' == bracks.Peek())
+                        if ("ayay" == bracks.Peek())
                             bracks.Pop();
                         else
                             return false;
@@ -42,32 +42,32 @@ namespace Brainpreter
         public static List<Token> TokenizeString(string input)
         {
             List<Token> Tokens = new List<Token>();
-            foreach (char c in input)
+            foreach (string c in input.Split(" "))
             {
                 switch(c)
                 {
-                    case '>':
+                    case "y":
                         Tokens.Add(Token.ShiftRight);
                         break;
-                    case '<':
+                    case "a":
                         Tokens.Add(Token.ShiftLeft);
                         break;
-                    case '+':
+                    case "ay":
                         Tokens.Add(Token.Plus);
                         break;
-                    case '-':
+                    case "ya":
                         Tokens.Add(Token.Minus);
                         break;
-                    case '.':
+                    case "ayaya":
                         Tokens.Add(Token.Output);
                         break;
-                    case ',':
+                    case "aya":
                         Tokens.Add(Token.Input);
                         break;
-                    case '[':
+                    case "ayay":
                         Tokens.Add(Token.StartLoop);
                         break;
-                    case ']':
+                    case "yaya":
                         Tokens.Add(Token.EndLoop);
                         break;
                     default:
@@ -80,10 +80,10 @@ namespace Brainpreter
         {
             return 
             @"
-            Brainpreter Help
+            AyaLang Help
 
-            -c: Convert a string to brainfuck code
-            -i: Interpret and execute brainfuck code
+            -c: Convert a string to ayalang code
+            -i: Interpret and execute ayalang code
             -h: Show this help
             ";
         }    

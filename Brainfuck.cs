@@ -105,12 +105,12 @@ namespace Brainpreter
                 string remPlus = "";
                 string divPlus = "";
                 for (int i = 0; i < multOfDiv; i++)
-                    mdivPlus += "+";
+                    mdivPlus += "ay ";
                 for (int i = 0; i < rem; i++)
-                    remPlus += "+";
+                    remPlus += "ay ";
                 for (int i = 0; i < Divider; i++)
-                    divPlus += "+";
-                fudge += $">{mdivPlus}[<{divPlus}>-]<{remPlus}.>";
+                    divPlus += "ay ";
+                fudge += $"y {mdivPlus}ayay a {divPlus}y ya yaya a {remPlus}ayaya y ";
             }
             System.Console.WriteLine(fudge);
         }
