@@ -1,3 +1,4 @@
+ayalang version
 # Brainfudge
 
 ### Quick Start
