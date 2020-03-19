@@ -42,32 +42,32 @@ namespace Brainpreter
         public static List<Token> TokenizeString(string input)
         {
             List<Token> Tokens = new List<Token>();
-            foreach (char c in input)
+            foreach (string c in input.Split(' '))
             {
                 switch(c)
                 {
-                    case '>':
+                    case "pipi":
                         Tokens.Add(Token.ShiftRight);
                         break;
-                    case '<':
+                    case "pichu":
                         Tokens.Add(Token.ShiftLeft);
                         break;
-                    case '+':
+                    case "pi":
                         Tokens.Add(Token.Plus);
                         break;
-                    case '-':
+                    case "ka":
                         Tokens.Add(Token.Minus);
                         break;
-                    case '.':
+                    case "pikachu":
                         Tokens.Add(Token.Output);
                         break;
-                    case ',':
+                    case "pikapi":
                         Tokens.Add(Token.Input);
                         break;
-                    case '[':
+                    case "pika":
                         Tokens.Add(Token.StartLoop);
                         break;
-                    case ']':
+                    case "chu":
                         Tokens.Add(Token.EndLoop);
                         break;
                     default:
@@ -80,10 +80,10 @@ namespace Brainpreter
         {
             return 
             @"
-            Brainpreter Help
+            Pikafudge Help
 
-            -c: Convert a string to brainfuck code
-            -i: Interpret and execute brainfuck code
+            -c: Convert a string to pikalang code
+            -i: Interpret and execute pikalang code
             -h: Show this help
             ";
         }    
