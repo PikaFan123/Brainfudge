@@ -1,3 +1,4 @@
+this loads stuff from a config.json file
 # Brainfudge
 
 ### Quick Start
