@@ -28,7 +28,7 @@ namespace Brainpreter
                             if (pointer == 0)
                             {
                                 System.Console.WriteLine("Error");
-                                throw new InvalidOperationException();
+                                throw new InvalidOperationException("Pointer tried to exceed Register <");
                             }
                             pointer--;
                             break;
@@ -36,7 +36,8 @@ namespace Brainpreter
                             if (pointer == regSize)
                             {
                                 System.Console.WriteLine("Error");
-                                throw new InvalidOperationException();
+                                throw new InvalidOperationException("Pointer tried to exceed Register >");
+                                
                             }
                             pointer++;
                             break;
@@ -100,6 +101,9 @@ namespace Brainpreter
             List<int> Linted = new List<int>();
             toConv.ToList().ForEach(x => Linted.Add(System.Convert.ToInt32(x)));
             string fudge = "";
+            string sepc = " ";
+            if (config.SingleChar)
+                sepc = "";
             foreach (int intl in Linted.ToArray())
             {
                 // This is just a variable to control which Divider returns a short program
@@ -109,12 +113,12 @@ namespace Brainpreter
                 string remPlus = "";
                 string divPlus = "";
                 for (int i = 0; i < multOfDiv; i++)
-                    mdivPlus += $"{config.Plus} ";
+                    mdivPlus += $"{config.Plus}{sepc}";
                 for (int i = 0; i < rem; i++)
-                    remPlus += $"{config.Plus} ";
+                    remPlus += $"{config.Plus}{sepc}";
                 for (int i = 0; i < Divider; i++)
-                    divPlus += $"{config.Plus} ";
-                fudge += $"{config.ShiftRight} {mdivPlus}{config.StartLoop} {config.ShiftLeft} {divPlus}{config.ShiftRight} {config.Minus} {config.EndLoop} {config.ShiftLeft} {remPlus}{config.Write} {config.ShiftRight} ";
+                    divPlus += $"{config.Plus}{sepc}";
+                fudge += $"{config.ShiftRight}{sepc}{mdivPlus}{config.StartLoop}{sepc}{config.ShiftLeft}{sepc}{divPlus}{config.ShiftRight}{sepc}{config.Minus}{sepc}{config.EndLoop}{sepc}{config.ShiftLeft}{sepc}{remPlus}{config.Write}{sepc}{config.ShiftRight}{sepc}";
             }
             System.Console.WriteLine(fudge);
         }

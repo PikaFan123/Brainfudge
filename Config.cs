@@ -34,6 +34,8 @@ namespace Brainpreter
 
         [JsonProperty("EndLoop")]
         public string EndLoop { get; set; } = "]";
+        [JsonProperty("SingleChar")]
+        public bool SingleChar {get; set; } = false;
     }
 
     public partial class Config

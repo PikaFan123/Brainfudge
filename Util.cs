@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Brainpreter
 {
@@ -27,8 +28,17 @@ namespace Brainpreter
             pair = new Tuple<string,string>(config.StartLoop,config.EndLoop);
             Stack<string> bracks = new Stack<string>();
             try 
-            {    
-                foreach (string c in bfC.Split(" "))
+            {   
+                string[] ff = null;
+                if (conf.SingleChar)
+                {
+                    ff = bfC.ToCharArray().Select(c => c.ToString()).ToArray();
+                }
+                else
+                {
+                    ff = bfC.Split(' ');
+                }
+                foreach (string c in ff)
                 {
                     if (pair.Item1 == c)
                         bracks.Push(c);
@@ -48,7 +58,16 @@ namespace Brainpreter
         {
             config = conf;
             List<Token> Tokens = new List<Token>();
-            foreach (string c in input.Split(" "))
+            string[] ff = null;
+            if (conf.SingleChar)
+            {
+                ff = input.ToCharArray().Select(c => c.ToString()).ToArray();
+            }
+            else
+            {
+                ff = input.Split(' ');
+            }
+            foreach (string c in ff)
             {
                 if (c == config.ShiftLeft)
                 {
@@ -127,3 +146,4 @@ namespace Brainpreter
         }
     }
 }
+
