@@ -94,7 +94,7 @@ namespace Brainpreter
             {
                 System.Console.WriteLine("Error");
             }
-            Console.Write(" ");
+            Console.Write("\n");
         }
         public static void Convert(string toConv)
         {

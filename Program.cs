@@ -46,7 +46,7 @@ namespace Brainpreter
                         System.Console.WriteLine(Util.GetHelp());
                     }
                 }
-                catch{}
+                catch{System.Console.WriteLine(Util.GetHelp());}
             }
             
         }
