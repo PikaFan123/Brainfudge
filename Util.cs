@@ -141,7 +141,7 @@ namespace Brainpreter
         }
         public static string WriteDefault()
         {
-            File.WriteAllText("config.json", new Config().ToJson());
+            File.WriteAllText("config.json", Newtonsoft.Json.JsonConvert.SerializeObject(new Config(), Newtonsoft.Json.Formatting.Indented));
             return "Done!";
         }
     }
