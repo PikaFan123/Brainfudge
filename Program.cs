@@ -32,17 +32,18 @@ namespace Brainpreter
             {
                 try 
                 {
-                    if (args[0] == "-h")
-                    {
-                        System.Console.WriteLine(Util.GetHelp());
-                    }
-                    else if (args[0] == "-p")
+                    
+                     if (args[0] == "-p")
                     {
                         System.Console.WriteLine(Util.GetDefinition());
                     }
                     else if (args[0] == "-w")
                     {
                         System.Console.WriteLine(Util.WriteDefault());
+                    }
+                    else
+                    {
+                        System.Console.WriteLine(Util.GetHelp());
                     }
                 }
                 catch{}

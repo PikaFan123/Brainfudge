@@ -7,5 +7,5 @@
     "Input": ",",
     "StartLoop": "[",
     "EndLoop": "]",
-    "SingleChar": false
+    "SingleChar": true
 }
