@@ -12,28 +12,28 @@ namespace Brainpreter
     public partial class Config
     {
         [JsonProperty("ShiftLeft")]
-        public string ShiftLeft { get; set; }
+        public string ShiftLeft { get; set; } = "<";
 
         [JsonProperty("ShiftRight")]
-        public string ShiftRight { get; set; }
+        public string ShiftRight { get; set; } = ">";
 
         [JsonProperty("Plus")]
-        public string Plus { get; set; }
+        public string Plus { get; set; } = "+";
 
         [JsonProperty("Minus")]
-        public string Minus { get; set; }
+        public string Minus { get; set; } = "-";
 
         [JsonProperty("Write")]
-        public string Write { get; set; }
+        public string Write { get; set; } = ".";
 
         [JsonProperty("Input")]
-        public string Input { get; set; }
+        public string Input { get; set; } = ",";
 
         [JsonProperty("StartLoop")]
-        public string StartLoop { get; set; }
+        public string StartLoop { get; set; } = "[";
 
         [JsonProperty("EndLoop")]
-        public string EndLoop { get; set; }
+        public string EndLoop { get; set; } = "]";
     }
 
     public partial class Config

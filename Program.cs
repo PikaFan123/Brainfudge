@@ -21,11 +21,7 @@ namespace Brainpreter
                     else if (args[0] == "-c")
                     {
                         BF.Convert(arg);
-                    }
-                    else if (args[0] == "-h")
-                    {
-                        System.Console.WriteLine(Util.GetHelp());
-                    }
+                    } 
                 }
                 else 
                 {
@@ -34,7 +30,22 @@ namespace Brainpreter
             }
             catch(ArgumentOutOfRangeException) 
             {
-                System.Console.WriteLine(Util.GetHelp());
+                try 
+                {
+                    if (args[0] == "-h")
+                    {
+                        System.Console.WriteLine(Util.GetHelp());
+                    }
+                    else if (args[0] == "-p")
+                    {
+                        System.Console.WriteLine(Util.GetDefinition());
+                    }
+                    else if (args[0] == "-w")
+                    {
+                        System.Console.WriteLine(Util.WriteDefault());
+                    }
+                }
+                catch{}
             }
             
         }

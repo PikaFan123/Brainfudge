@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Brainpreter
 {
@@ -102,8 +103,27 @@ namespace Brainpreter
 
             -c: Convert a string to brainfuck code
             -i: Interpret and execute brainfuck code
+            -p: Print the current brainfuck definition
+            -w: Write default config to config.json
             -h: Show this help
             ";
-        }    
+        }  
+        public static string GetDefinition()
+        {
+            config = Config.FromJson(File.ReadAllText("config.json"));
+            string retMe = "";
+            foreach (KeyValuePair<string,string> x in Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string,string>>(config.ToJson()))
+            {
+                string key = x.Key + ":";
+                for (int i = x.Key.Length - 12; i < 0; i++) {key += " ";}
+                retMe += $"{key} {x.Value}\n";
+            }
+            return retMe;
+        }
+        public static string WriteDefault()
+        {
+            File.WriteAllText("config.json", new Config().ToJson());
+            return "Done!";
+        }
     }
 }
